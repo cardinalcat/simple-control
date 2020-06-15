@@ -151,7 +151,7 @@ fn run_client(mut stream: TcpStream){
         }
         let matrix = Mat::from_raw_compressed(&inbuf[4..recvlen]);
         matrix.u32frame(&mut buffer);
-        window.update_with_buffer(&buffer, 1920, 1080).unwrap();
+        window.update_with_buffer(&buffer, matrix.height() as usize, matrix.width() as usize).unwrap();
         inbuf = [0;100000];
         buffer.clear();
         std::mem::drop(matrix);
@@ -186,7 +186,6 @@ fn run_client(mut stream: TcpStream){
                 let state = DeviceInput::Mouse(MouseState::MouseClick(ButtonMouse::from(&button)));
                 outbuf.write(serde_json::to_string(&state).unwrap().as_bytes()).unwrap();
                 outbuf.push(b'|');
-                println!("sent packet");
             },
             None => (),
         }
