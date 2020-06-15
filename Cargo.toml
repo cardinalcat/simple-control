@@ -1,0 +1,19 @@
+[package]
+name = "simple-control"
+version = "0.1.0"
+authors = ["julian lazaras <lazaras@pdx.edu>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+minifb = "*"
+enigo = "*"
+opencv = {version = "0.37", features = ["buildtime-bindgen"]}
+captrs = "*"
+args-functional = "*"
+serde_derive = "*"
+serde = "*"
+serde_json = "*"
+crosskey = {path = "../crosskey"}
+device_query = "*"
